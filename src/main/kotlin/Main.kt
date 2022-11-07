@@ -63,6 +63,7 @@ suspend fun generaCapsulas(): ConcurrentLinkedQueue<Capsula> = coroutineScope {
 
     println("Cargando capsulas: $NUM_CAPSULAS")
 
+    // El aplicar async, hacemos que devuela un resultado.
     val result = async {
         for (i in 0 until NUM_CAPSULAS) {
             contadorID++
