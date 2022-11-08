@@ -10,8 +10,8 @@ import kotlin.system.measureTimeMillis
 *
 */
 
-private const val NUM_CAPSULAS = 4
-private const val NUM_CORRUTINAS = 2
+private const val NUM_CAPSULAS = 75
+private const val NUM_CORRUTINAS = 10
 
 private var contadorID: Int = 0
 private var totalPasajeros = 0
@@ -27,6 +27,7 @@ fun main() = runBlocking {
     val capsulas = generaCapsulas()
     //println(capsulas)
 
+    println("Preparando zonas de lanzamiento -- Numero de trabajadores: $NUM_CORRUTINAS | Numero de Capsulas: $NUM_CAPSULAS")
     val tiempo = measureTimeMillis {
         // Generamos la lista de trabajadores -> CONSTRUCTOR DE CORRUTINAS
         val trabajadores = List(NUM_CORRUTINAS) {
@@ -52,7 +53,7 @@ fun main() = runBlocking {
     }
 
     // El resultado de usar runBlocking, ejemplo basico.
-    println("Fin de mision en: $tiempo ms \nTotal Pasajeros Salvados: $totalPasajeros")
+    println("\nFin de mision en: ${tiempo / 1000} s \nTotal Pasajeros Salvados: $totalPasajeros")
 
 }
 
@@ -68,10 +69,11 @@ suspend fun generaCapsulas(): ConcurrentLinkedQueue<Capsula> = coroutineScope {
         for (i in 0 until NUM_CAPSULAS) {
             contadorID++
             listadoCapsulas.add(Capsula(contadorID))
-            delay(5)
             print(".")
+            delay(5)
         }
-        println("\n¡Capsulas generadas!")
+        println("\n¡Capsulas generadas!\n")
+        delay(1000)
         listadoCapsulas
     }
 
