@@ -11,7 +11,7 @@ import kotlin.system.measureTimeMillis
 */
 
 private const val NUM_CAPSULAS = 75
-private const val NUM_CORRUTINAS = 10
+private const val NUM_CORRUTINAS = 15
 
 private var contadorID: Int = 0
 private var totalPasajeros = 0
@@ -43,7 +43,7 @@ fun main() = runBlocking {
                     )
                     totalPasajeros += capsula.pasajeros // Vamos sumando los pasajeros
 
-                    delay(capsula.tiempoLanzamiento) // El trabajador en especifico descansa el tiempo de x capsula
+                    delay(capsula.tiempoLanzamiento)
 
                     println("\t --Trabajador: ${Thread.currentThread().name} lanzo la capsula -> ${capsula.id} ")
                 }
